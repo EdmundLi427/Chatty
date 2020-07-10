@@ -5,12 +5,14 @@
    <meta charset="UTF-8" />
    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-   <title>Socket.io Example</title>
-   
- </head>
+   <title>Chatty</title>
+   <link rel="stylesheet" href="/styles.css">
+  </head>
 
  <body>
-   <h1>Our Socket.io Chat Application</h1>
+<ul class = pages>
+  <li>
+   <h1>Chatty</h1>
    <div>
      <h2>Messages</h2>
      <ul></ul>
@@ -19,41 +21,18 @@
      <input type="text" />
      <button type = "submit" >Send</button>
    </form>
+  </li>
+  <li class="login page">
+    <div class="form">
+      <h3 class="title">What's your nickname?</h3>
+      <input class="usernameInput" type="text" maxlength="14" />
+    </div>
+  </li>
+</ul>
 
 <script src="/socket.io/socket.io.js"></script>
-<script>
-  const form = document.querySelector("form");
-messageList = document.querySelector("ul");
-
-const socket = io();
-const buttonSend = document.getElementById("submit");
-
-
-function sendMessage(e){
-  var input = document.querySelector("input");
-  e.preventDefault();
-  socket.emit("message", input.value); //emits "message"
-  input.value = "";
-}
-// looks for button click to send message
-form.addEventListener("submit", sendMessage);
-// function to put message on website
-function addMessageToHTML(message){
-    const li = document.createElement("li");
-    li.innerText = message;
-    messageList.append(li);
-}
-// recieves emits from server to know that we have to write a message
-socket.on("message", (data) => {
-  addMessageToHTML(data);
-}); 
-// function to say user connected
-function alertUserConnected(){
-  addMessageToHTML("User Connected");
-}
-// checks for server to emit connection
-socket.on("user connected", alertUserConnected);
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src ="/main.js"></script>
 
   </body>
 </html>
